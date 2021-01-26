@@ -135,7 +135,7 @@ async function checkGamesData(games){
         P2text += `${cardValue[card.CV]}${mast[card.CS]}`;
       }
     
-      let msg = `⏱ #N${gameObject.Value.DI} ${gameObject.Value.SC.FS.S1}(${P1text}) - ${gameObject.Value.SC.FS.S2}(${P2text})`;
+      let msg = `#N${gameObject.Value.DI} ${gameObject.Value.SC.FS.S1}(${P1text}) - ${gameObject.Value.SC.FS.S2}(${P2text})`;
       if (
         activeMsg[gameObject.Value.DI]
           && !activeMsg[gameObject.Value.DI].locked
