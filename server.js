@@ -66,34 +66,6 @@ const telegramToken = checkEnvironments('TELEGRAM_TOKEN');
 const bot = new Bot(telegramToken, { polling: true });
 const tSubscryber = checkEnvironments('TELEGRAM_CHANNEL');
 
-// Бытует мнение, что эти комбинации, сулят скорый выйгрыш, сам не уверен.
-function signals(cart, game, sp){
-  let signal = false;
-  let signalMsg = `[${game}] Сигнал: `;
-  if (sp) {
-    signal = true;
-    signalMsg += '6♠️';
-  }
-  if (cart[14] && cart[14] >= 2) {
-    signal = true;
-    signalMsg += 'ТУЗ,ТУЗ; ';
-  }
-  if (cart[6]) {
-    if(!!cart[8]){
-      signal = true;
-      signalMsg += '6,8; ';
-    }
-    if(!!cart[7] && !!cart[12]){
-      signal = true;
-      signalMsg += '6,7,ДАМА; ';
-    }
-  }
-  if (!!cart[10] && !!cart[13]) {
-    signal = true;
-    signalMsg += 'король,10; ';
-  }
-  if (signal) sendMessage(signalMsg);
-}
 
 async function checkGamesData(games){
   const game = await checkGame(games.I);
@@ -130,7 +102,7 @@ async function checkGamesData(games){
           ? carts[card.CV] += 1 : carts[card.CV] = 1;
       }
       if (gameObject.Value.SC.FS.S1 === gameObject.Value.SC.FS.S2) {
-        endPhrase += '#N';
+        endPhrase += '#X';
       }
       let msg = `[${gameObject.Value.DI}]: ${gameObject.Value.SC.FS.S1}:(${P1text}) - ${gameObject.Value.SC.FS.S2}:(${P2text})${endPhrase}`;
       if (activeMsg[gameObject.Value.DI] && activeMsg[gameObject.Value.DI].sended) {
