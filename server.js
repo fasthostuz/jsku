@@ -104,7 +104,7 @@ async function checkGamesData(games){
       if (gameObject.Value.SC.FS.S1 === gameObject.Value.SC.FS.S2) {
         endPhrase += '#X';
       }
-      let msg = `[${gameObject.Value.DI}]: ${gameObject.Value.SC.FS.S1}(${P1text}) - ${gameObject.Value.SC.FS.S2}(${P2text})${endPhrase}`;
+      let msg = `#N${gameObject.Value.DI} ${gameObject.Value.SC.FS.S1}(${P1text}) - ${gameObject.Value.SC.FS.S2}(${P2text})${endPhrase}`;
       if (activeMsg[gameObject.Value.DI] && activeMsg[gameObject.Value.DI].sended) {
         if (activeMsg[gameObject.Value.DI].msg !== msg) {
           signals(carts, gameObject.Value.DI, sp);
@@ -134,7 +134,8 @@ async function checkGamesData(games){
         const card = P2[index];
         P2text += `${cardValue[card.CV]}${mast[card.CS]}`;
       }
-      let msg = `⏱[${gameObject.Value.DI}]: ${gameObject.Value.SC.FS.S1}(${P1text}) - ${gameObject.Value.SC.FS.S2}(${P2text})`;
+    
+      let msg = `⏱ #N${gameObject.Value.DI} ${gameObject.Value.SC.FS.S1}(${P1text}) - ${gameObject.Value.SC.FS.S2}(${P2text})`;
       if (
         activeMsg[gameObject.Value.DI]
           && !activeMsg[gameObject.Value.DI].locked
